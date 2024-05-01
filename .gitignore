@@ -1,0 +1,15 @@
+# Dependency directories
+node_modules/
+
+# TypeScript compiled files
+dist/
+
+# Environment configuration files
+.env
+
+# IDE / Editor directories
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
