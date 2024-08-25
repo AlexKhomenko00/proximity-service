@@ -1,12 +1,10 @@
 import { Location } from 'src/location/location.entity';
+import { LongLatDto } from 'src/shared/long-lang.dto';
 
 export class NearbyLocationDto {
   id: string;
   name: string;
-  longLat: {
-    long: number;
-    lat: number;
-  };
+  longLat: LongLatDto;
   city: string;
   state: string;
   county: string;
@@ -17,8 +15,8 @@ export class NearbyLocationDto {
       id,
       name,
       longLat: {
-        long: longLat.getLong(),
-        lat: longLat.getLat(),
+        longitude: longLat.getLong(),
+        latitude: longLat.getLat(),
       },
       city,
       state,

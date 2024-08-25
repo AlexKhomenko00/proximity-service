@@ -1,21 +1,21 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
+import { appConfig } from './config/app.config';
+import { locationBasedConfig } from './config/location-based-finder.config';
 import { LocationBasedFinderModule } from './location-based-finder/location-based-finder.module';
 import { LocationModule } from './location/location.module';
-import { locationBasedConfig } from './config/location-based-finder.config';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
     LocationModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [locationBasedConfig],
+      load: [locationBasedConfig, appConfig],
     }),
     LocationBasedFinderModule,
+    EventEmitterModule.forRoot(),
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

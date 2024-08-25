@@ -5,6 +5,10 @@ import { Location } from './location.entity';
 export class LocationRepository {
   private readonly locations: Location[] = [];
 
+  public async getAllLocations(): Promise<Location[]> {
+    return this.locations;
+  }
+
   public async getLocationById(id: string): Promise<Location | undefined> {
     return this.locations.find((location) => location.id === id);
   }

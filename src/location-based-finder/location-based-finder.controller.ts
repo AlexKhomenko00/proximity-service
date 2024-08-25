@@ -1,9 +1,11 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { LongLat } from 'src/shared/long-lang';
 import { FindNearbyLocationsDto } from './dto/find-nearby-location.dto';
 import { NearbyLocationDto } from './dto/nearby-location.dto';
 import { LocationBasedFinderService } from './location-based-finder.service';
 
+@ApiTags('location-based-finder')
 @Controller('location-based-finder')
 export class LocationBasedFinderController {
   constructor(
@@ -12,7 +14,7 @@ export class LocationBasedFinderController {
 
   @Get('nearby-locations')
   public async getNearbyLocations(
-    @Body() dto: FindNearbyLocationsDto,
+    @Query() dto: FindNearbyLocationsDto,
   ): Promise<NearbyLocationDto[]> {
     const locations = await this.locationBasedFinder.getNearbyLocations({
       longLat: new LongLat(dto),
